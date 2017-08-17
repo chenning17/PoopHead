@@ -17,6 +17,12 @@ public class Card {
         this.cardNumber = inputCardNumber;
     }
    
+    //method to copy card value from a given card
+    public void copyCard(Card card){
+    this.cardNumber = card.getCardNumber();
+    }
+    
+    
     //get card values as number between 1-52
     public int getCardNumber()
     {
@@ -79,5 +85,32 @@ public class Card {
             value = cardNumber - 39; //must be spades
         }
         return value + 1; //if returns 0 then above conditions have not been met and an error has occurred
+    }
+    
+    public String special(){
+      /* check to see if card is one of the special cards, i.e. has a special effect on play
+       * card value is returned in range 2-14, special cards are: 2 (reset pile), 
+       * 7 (play 7 or lower), 8 (invisible / see-through), 10 (burn pile), J (reverse direction of play).
+       */
+        int value = this.getCardValue();
+        
+        String result;
+        
+        switch(value){
+        case 2: result = "Reset pile";
+            break;
+        case 7: result = "Play 7 or lower";
+            break;
+        case 8: result = "Card is invisible";
+            break;
+        case 10: result = "Burn pile";
+            break;
+        case 11: result = "Reverse direction";
+            break;
+        default: result = "Not a special card";
+            break;
+        }
+        
+        return result;
     }
 }

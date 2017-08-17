@@ -58,8 +58,12 @@ public class PlayerHand {
         // Collections.shuffle(Arrays.asList(deck));
     }
     
-    //returns card from deck where chosen cards are values between 1-length of player hand.
+    //returns card from hand where chosen cards are values between 1-length of player hand.
     public Card getCard(int chosenCard){
         return hand[chosenCard-1];
+    }
+    
+    public void playCard(int cardNumber, CurrentState state){
+        state.update(this.getCard(cardNumber));
     }
 }
