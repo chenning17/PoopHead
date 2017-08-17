@@ -1,7 +1,9 @@
 # PoopHead
 
 A fun card game based on the game s***head (rules vary for different versions of the game). 
+
 Currently have set up the deck and ability to deal a set of cards to players. 
+
 Next step is to implement the rules of play:
         -> 2 resets 
         -> 7 or lower
