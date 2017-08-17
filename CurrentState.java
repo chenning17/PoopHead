@@ -41,6 +41,9 @@ public class CurrentState {
     }
     
     public void getState(){
+        //used to display to the terminal the current state of the current game
+        //displays turn direction value, player to play next, the last two cards 
+        //to be played and any special effect of the last played card.
         int dir = this.direction;
         int turn = this.playerTurn;
         System.out.printf("\ndirection of play is %d\n", dir);
