@@ -5,6 +5,8 @@ A fun card game based on the game s***head (rules vary for different versions of
 
 Currently have set up the deck and ability to deal a set of cards to players. 
 
+Players can now play cards to pile, and update the game properties (direction of play, who's turn it is, etc.)
+
 
 Next step is to implement the rules of play:
         
