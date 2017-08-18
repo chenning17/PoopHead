@@ -14,14 +14,14 @@ public class PlayerHand {
     int size = 7;
     private Card[] hand = new Card[size];
 
-    //initialise hand to contain first cards from deck
+    //initialise hand to contain unknown cards
     public PlayerHand(){
         for(int i=1; i<=this.size; i++){
             hand[i-1] = new Card(0);
         }
     }
     
-    //initialise hand to contain first cards from deck
+    //reduce the sie of the hand.
     public void reduceHandSize(){
         this.size = 2;
         
@@ -43,8 +43,8 @@ public class PlayerHand {
     
      public void setPlayerCard(Card card, int handPosition){
        
-       //copy given card to hand array, in chosen position in hand
-            hand[handPosition] = card;             
+       //copy given card to hand, in chosen position in hand
+            hand[handPosition].setCard(card.getCardNumber());             
     }
     
     public void printPlayerHand(){
@@ -63,7 +63,27 @@ public class PlayerHand {
         return hand[chosenCard-1];
     }
     
-    public void playCard(int cardNumber, CurrentState state){
-        state.update(this.getCard(cardNumber));
+    public void playCard(int cardPosition, CurrentState state, Pile pile){
+        //update the current state of the game
+        state.update(this.getCard(cardPosition));
+        
+        //now update the pile cards so the top card (next null card) is now the card played by the player
+        pile.setPileCard(this.getCard(cardPosition), pile.nextNull());
+        
+        // now print out current pile to terminal
+        pile.printTopCards();
+        
+        //now replace the played card in the hand with a null one.
+        Card nullCard = new Card(0);
+        //cardPosition here is given as value 1-7 so need to subtract 1 to get correct index.
+        this.setPlayerCard(nullCard, cardPosition-1);
+        
+        //now need to replace played card by a new one from the deck.
+        //****************************
     }
+    
+//    //method used to update the properties of a players hand when a card is played
+//    public void update(){
+//        
+//    }
 }

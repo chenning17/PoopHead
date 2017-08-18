@@ -22,8 +22,12 @@ public class Card {
     this.cardNumber = card.getCardNumber();
     }
     
+    //method to set a card's number
+    public void setCard(int cardValue){
+        this.cardNumber = cardValue;
+    }
     
-    //get card values as number between 1-52
+    //get card values as number between 1-52 (can also be 0 to represent a null card)
     public int getCardNumber()
     {
         return (cardNumber);

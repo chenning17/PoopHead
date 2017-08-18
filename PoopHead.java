@@ -16,6 +16,13 @@ public class PoopHead {
      * @param args the command line arguments
      */
     
+    public static void printAllInfo(PlayerHand hand, CurrentState state){
+        //prints all current state information and prints player's current hand .
+        //state.getState();
+       // hand.printPlayerHand(); 
+        
+    }
+    
 //  public static String special(Card card){
 //      /* check to see if card is one of the special cards, i.e. has a special effect on play
 //       * card value is returned in range 2-14, special cards are: 2 (reset pile), 
@@ -48,6 +55,10 @@ public class PoopHead {
         
         //generate initial unshuffled deck
         Deck testDeck = new Deck();
+        
+        //create initial pile object
+        Pile pile = new Pile();
+        
         //testDeck.printDeck(); //check it
         //System.out.println("\n");
         
@@ -80,28 +91,29 @@ public class PoopHead {
         
         //check CurrentState object functions properly
         CurrentState state = new CurrentState(7);
-        state.getState();
+       // state.getState();
         
-        testHand.playCard(7, state);
-        state.getState();
+        testHand.playCard(7, state, pile);
+       printAllInfo(testHand, state);
         
-         testHand.playCard(6, state);
-        state.getState();
+              
+         testHand.playCard(6, state, pile);
+       printAllInfo(testHand, state);
         
-         testHand.playCard(5, state);
-        state.getState();
+         testHand.playCard(5, state, pile);
+       printAllInfo(testHand, state);
+       
+         testHand.playCard(4, state, pile);
+        printAllInfo(testHand, state);
         
-         testHand.playCard(4, state);
-        state.getState();
+        testHand.playCard(3, state, pile);
+        printAllInfo(testHand, state);
         
-        testHand.playCard(3, state);
-        state.getState();
-        
-         testHand.playCard(2, state);
-        state.getState();
-        
-         testHand.playCard(1, state);
-        state.getState();
+         testHand.playCard(2, state, pile);
+       printAllInfo(testHand, state);
+       
+         testHand.playCard(1, state, pile);
+        printAllInfo(testHand, state);
         
         
         System.exit(0);

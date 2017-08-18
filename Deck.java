@@ -39,5 +39,12 @@ public class Deck {
         return deck[chosenCard-1];
     }
     
+     public void setNullCard(int deckPosition){
+       //create a new null card to replace the card dealt from the deck to a player.
+         Card nullCard = new Card(0);
+       //set card in deck to be null as it has now been given to a player.
+            deck[deckPosition] = nullCard;             
+    }
+    
     
 }
