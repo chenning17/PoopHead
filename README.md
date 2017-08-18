@@ -38,10 +38,15 @@ Next step is to implement the rules of play:
 Hopefully once rules have been implemented can visualise the game.
 
 TODO:
+
 -> properly implement having multiple players
+
 -> implement rules properly (only obeys Jack change of direction at the moment)
+
 -> add in new class to hold the three face down and three face up cards each player is dealt at start of game.
+
 -> ability to properly resize a players hand, e.g. in case player has to pick up pile.
+
 
 -> some sort of visualisation / non terminal interface.
 
