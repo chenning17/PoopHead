@@ -19,64 +19,68 @@ public class Pile {
     private Card[] pile = new Card[52];
 
     //create and initialise pile to contain 52 null/unknown Cards
-    public Pile(){
-        for(int i=0; i<pile.length; i++){
+    public Pile() {
+        for (int i = 0; i < pile.length; i++) {
             pile[i] = new Card(0);
         }
     }
-    
+
     //returns card from pile where chosenCard is value between 0-51.
-    public Card getCard(int chosenCard){
+    public Card getCard(int chosenCard) {
         return pile[chosenCard];
     }
-    
-    //used to reinitialise deck to contain 52 null Cards
-     public void nullifyPile(){
-       for(int i=1; i<=pile.length; i++){
-            pile[i-1] = new Card(0);
-        }           
-    }
-     
-     //method used to find next available pile space, i.e. where top of pile is / next null card is.
-     //this is used so that a card can be played into this spot in the pile card array.
-     //returns an integer representing the index at which the next card can be played.
-     public int nextNull(){
-         //set value to maximum it can be so it can be more easily checked if method is incorrect
-         int index = 51;
-         for(int i = 0; i<pile.length; i++){
-             if(this.getCard(i).getCardNumber() == 0){
-                 index = i;
-                 break;
-             }
-         }
-         System.out.printf("index value is %d\n", index);
-         return index;
-     }
-     
-     //used to set the card for a given position in the pile
-     public void setPileCard(Card card, int pilePosition){
-            pile[pilePosition].setCard(card.getCardNumber());              
-    }
-     
-     //method to print the last 5 pile  cards to the terminal (if applicable)
-     public void printTopCards(){
-         int topNull = this.nextNull();
-         
-         if(topNull >= 5){
-             //if there are at least 5 cards in the pile then print the top 5 (not including the null cards
-             for(int i = topNull-5; i<topNull; i++){
-                 this.getCard(i).stringCard();
-             }
-         }
-         
-         else {
-                 //if not 5 available cards to print, just print the first 5 cards (including unitialised ones) to the terminal
-              for(int i = 0; i<5; i++){
-                 this.getCard(i).stringCard();
-              }
-        }
-     }
-    
 
+    //used to reinitialise deck to contain 52 null Cards
+    public void nullifyPile() {
+        for (int i = 1; i <= pile.length; i++) {
+            pile[i - 1] = new Card(0);
+        }
+    }
+
+    //method used to find next available pile space, i.e. where top of pile is / next null card is.
+    //this is used so that a card can be played into this spot in the pile card array.
+    //returns an integer representing the index at which the next card can be played.
+    public int nextNull() {
+        //set value to maximum it can be so it can be more easily checked if method is incorrect
+        int index = 51;
+        for (int i = 0; i < pile.length; i++) {
+            if (this.getCard(i).getCardNumber() == 0) {
+                index = i;
+                break;
+            }
+        }
+        //System.out.printf("index value is %d\n", index);
+        return index;
+    }
+
+    //used to set the card for a given position in the pile
+    public void setPileCard(Card card, int pilePosition) {
+        pile[pilePosition].setCard(card.getCardNumber());
+    }
+
+    //method to print the last 5 pile  cards to the terminal (if applicable)
+    public void printTopCards() {
+        //get index of earliest card in pile that is null to determine where top of pile is
+        int topNull = this.nextNull();
+
+        //this string is used to print last 5 cards in pile to terminal in one line.
+        String topCardsString = "";
+
+        if (topNull >= 5) {
+            //if there are at least 5 cards in the pile then print the top 5 (not including the null cards
+            for (int i = topNull - 5; i < topNull; i++) {
+                topCardsString += this.getCard(i).stringCard() + " ";
+            }
+        } else {
+            //if not 5 available cards to print, just print the first 5 cards (including unitialised ones) to the terminal
+            for (int i = 0; i < 5; i++) {
+                topCardsString += this.getCard(i).stringCard() + " ";
+            }
+        }
+        System.out.printf("%s   ", topCardsString);
+
+        //print out whether or not top card in pile is a special card
+        if(topNull>0){System.out.printf("%s\n", pile[topNull-1].special());}
+    }
 
 }

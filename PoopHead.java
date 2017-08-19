@@ -7,116 +7,82 @@ package poophead;
 
 /**
  *
- * @author Calum
- * 15/08/17
+ * @author Calum 15/08/17
  */
 public class PoopHead {
 
     /**
      * @param args the command line arguments
      */
-    
-    public static void printAllInfo(PlayerHand hand, CurrentState state){
+    public static void printAllInfo(PlayerHand hand, CurrentState state) {
         //prints all current state information and prints player's current hand .
         //state.getState();
-       // hand.printPlayerHand(); 
-        
+        // hand.printPlayerHand(); 
+
     }
-    
-//  public static String special(Card card){
-//      /* check to see if card is one of the special cards, i.e. has a special effect on play
-//       * card value is returned in range 2-14, special cards are: 2 (reset pile), 
-//       * 7 (play 7 or lower), 8 (invisible / see-through), 10 (burn pile), J (reverse direction of play).
-//       */
-//        int value = card.getCardValue();
-//        
-//        String result;
-//        
-//        switch(value){
-//        case 2: result = "Reset pile";
-//            break;
-//        case 7: result = "Play 7 or lower";
-//            break;
-//        case 8: result = "Card is invisible";
-//            break;
-//        case 10: result = "Burn pile";
-//            break;
-//        case 11: result = "Reverse direction";
-//            break;
-//        default: result = "Not a special card";
-//            break;
-//        }
-//        
-//        return result;
-//    }
-  
+
+    //test method to implmement the order of play and play a card by that player
+    public static void nextPlay(PlayerHand[] player, Pile pile, CurrentState state) {
+
+        //get value of who is to play next.
+        int nextTurn = state.getTurn();
+
+        player[nextTurn].playCard(7, state, pile);
+        //print current state
+        //printAllInfo(player[nextTurn], state);
+
+    }
+
     public static void main(String[] args) {
-        // TODO code application logic here
-        
+
+        //game properties:
+        int NUMBER_OF_PLAYERS = 3;
+
+        //initialise number of players for game
+        PlayerHand[] player = new PlayerHand[NUMBER_OF_PLAYERS];
+
+        for (int i = 0; i < player.length; i++) {
+            player[i] = new PlayerHand();
+        }
+
         //generate initial unshuffled deck
         Deck testDeck = new Deck();
-        
+
         //create initial pile object
         Pile pile = new Pile();
-        
+
         //testDeck.printDeck(); //check it
         //System.out.println("\n");
-        
         //now shuffle deck and see if it has correctly been shuffled
         testDeck.shuffleDeck();
         //testDeck.printDeck();
+
         
-        //check suit and value functions return correct values for last card in shuffled deck
-        //System.out.printf("suit is %d\n", testDeck.getCard(52).getCardSuit());
-        //System.out.printf("value is %d\n", testDeck.getCard(52).getCardValue());
-        
-        
-        //System.out.println("\n");
-                
-        //generate initial unshuffled player hand
-        PlayerHand testHand = new PlayerHand();
-       // testHand.printPlayerHand(); //check it
-        //System.out.println("\n");
-        
+    
         //deal 7 cards from deck inclusively starting from specified card (1-46 in deck (46+6 more = 52)) 
-        Dealer.deal(testDeck, testHand, 46);
-        testHand.printPlayerHand(); //check it
-               
-        //check suit and value functions return correct values for last card in hand
-        //System.out.printf("suit is %d\n", testHand.getCard(7).getCardSuit());
-        //System.out.printf("value is %d\n", testHand.getCard(7).getCardValue());
-         
-        //check special effect of last card in hand
-        //System.out.printf("special effect is %s\n", testHand.getCard(7).special());
-        
-        //check CurrentState object functions properly
-        CurrentState state = new CurrentState(7);
-       // state.getState();
-        
-        testHand.playCard(7, state, pile);
-       printAllInfo(testHand, state);
-        
-              
-         testHand.playCard(6, state, pile);
-       printAllInfo(testHand, state);
-        
-         testHand.playCard(5, state, pile);
-       printAllInfo(testHand, state);
-       
-         testHand.playCard(4, state, pile);
-        printAllInfo(testHand, state);
-        
-        testHand.playCard(3, state, pile);
-        printAllInfo(testHand, state);
-        
-         testHand.playCard(2, state, pile);
-       printAllInfo(testHand, state);
-       
-         testHand.playCard(1, state, pile);
-        printAllInfo(testHand, state);
-        
-        
+        Dealer.deal(testDeck, player[0], 1);
+        Dealer.deal(testDeck, player[1], 8);
+        Dealer.deal(testDeck, player[2], 15);
+
+        //print out players hands and player numbers to check them
+        System.out.printf("player 1: ");
+        player[0].printPlayerHand(); //check it
+        System.out.printf("player 2: ");
+        player[1].printPlayerHand(); //check it second hand too
+        System.out.printf("player 3: ");
+        player[2].printPlayerHand(); //check third hand too
+        System.out.printf("\n");
+
+        //check CurrentState object functions properly, argument is number of players in game
+        CurrentState state = new CurrentState(NUMBER_OF_PLAYERS);
+        // state.getState();
+
+        //play cards from each player in correct order.
+        nextPlay(player, pile, state);
+        nextPlay(player, pile, state);
+        nextPlay(player, pile, state);
+
         System.exit(0);
     }
-    
+
 }

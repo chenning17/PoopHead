@@ -41,7 +41,9 @@ Hopefully once rules have been implemented can visualise the game.
 
 TODO:
 
--> properly implement having multiple players
+-> properly implement having multiple players (done to a certain extent for now)
+
+-> make hands print out method on one line as easier to read / see.
 
 -> implement rules properly (only obeys Jack change of direction at the moment)
 
@@ -49,6 +51,7 @@ TODO:
 
 -> ability to properly resize a players hand, e.g. in case player has to pick up pile.
 
+-> ability to play more than one of the same card at a time if player wants to
 
 -> some sort of visualisation / non terminal interface.
 

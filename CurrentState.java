@@ -12,15 +12,15 @@ package poophead;
 public class CurrentState {
     
     //number of players in the game, used alongside playerTurn to help decide who is to play next
-    private int numberOfPlayers = 7;
+    private int numberOfPlayers = 0;
     
     //used to identify who's turn it is to play next, (should be value 0-6 for max 7 player game)
     private int playerTurn = 0;
     
     //direction of play is either: 1 clockwise, or -1 anticlockwise
-    private int direction = -1;
+    private int direction = 1;
     
-   
+
     
     //previous card, not the top card that can be seen, needed in case an 8 is played
     private Card previousCard = new Card(0);
@@ -51,6 +51,10 @@ public class CurrentState {
         this.previousCard.stringCard();
         this.currentCard.stringCard();
          System.out.printf("special effect is %s\n", this.currentCard.special());
+    }
+    
+    public int getTurn(){
+        return this.playerTurn;
     }
     
     
